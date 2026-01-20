@@ -1,0 +1,51 @@
+const db = require('../../DB/mysql')
+
+const TABLA ='coi_cliente';
+
+module.exports = function(dbinyectada) {
+
+    let db = dbinyectada;
+
+    if(!db){
+        db = require('../../DB/mysql')
+    }
+
+    function todos(){
+        return db.todos(TABLA)
+    }
+
+    function validauso(body){
+        return db.validauso(TABLA, body);
+    }   
+
+    function uno(body){
+        return db.uno(TABLA, body);
+    }
+    
+    function agregar(body){ 
+
+        body.fh_registro = new Date(); 
+        return db.agregar(TABLA, body);
+
+    }
+    
+    function baja(body){
+        return db.baja(TABLA, body);
+    }
+    function ClientesAutocomplete(query){
+        return db.clientesAutocomplete(query);
+    }
+
+    function todosAgente(body){
+        return db.todosAgente(TABLA, body);
+    }
+    return {
+        todos,
+        uno,
+        baja,
+        agregar,
+        ClientesAutocomplete,
+        validauso,
+        todosAgente
+    }
+}
