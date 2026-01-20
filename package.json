@@ -1,5 +1,5 @@
 {
-  "name": "webbitcoint",
+  "name": "diotServer",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -26,10 +26,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ricado80/API-PORTAL.git"
+    "url": "https://github.com/Rub28/diotServer.git"
   },
   "bugs": {
-    "url": "https://github.com/Ricado80/API-PORTAL/issues"
+    "url": "https://github.com/Rub28/diotServer/issues"
   },
-  "homepage": "https://github.com/Ricado80/API-PORTAL#readme"
+  "homepage": "https://github.com/Rub28/diotServer#readme"
 }
