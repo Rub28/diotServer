@@ -1,9 +1,29 @@
 
-require('dotenv')
-/* 
+require('dotenv') 
+
+// Desarrollo   
+ /*
 module.exports = {
     app: {
-        port: process.env.PORT || 4003
+        port: process.env.PORT || 4001
+    },
+    jwt:{
+        secret: process.env.JET_SECRET || 'miconstraseña2848330'
+    },
+    mysql:{
+        host: process.env.MYSQL_HOST || 'localhost', 
+        user: process.env.MYSQL_USER || 'root',
+        password: process.env.MYSQL_PASSWORD || '',
+        database: process.env.MYSQL_DB || 'bcoin_bd', 
+        port: process.env.PORT_BD || 3306  
+    }   
+}     
+*/ 
+// Productvo 
+
+module.exports = {
+    app: {
+        port: process.env.PORT || 4004 
     },
     jwt:{
         secret: process.env.JET_SECRET || 'miconstraseña2848330'
@@ -16,22 +36,4 @@ module.exports = {
         port: process.env.PORT_BD || 3306  
     }   
 }         
- */   
-// Ambiente LOCAL 
-module.exports = {
-    app: {
-        port: process.env.PORT || 4001
-    },
-    jwt:{
-        secret: process.env.JET_SECRET || 'miconstraseña2848330'
-    },
-    mysql:{
-        host: process.env.MYSQL_HOST || '127.0.0.1',
-        user: process.env.MYSQL_USER || 'root',
-        password: process.env.MYSQL_PASSWORD || '',
-        database: process.env.MYSQL_DB || 'bcoin_bd', 
-        port: process.env.PORT_BD || 3306  
-    }   
-}     
-  
- 
+
