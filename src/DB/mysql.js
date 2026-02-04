@@ -1268,6 +1268,14 @@ async function validauso(tabla, consulta) {
                         mensaje: returnMensaje
                      };  
 
+                     agregar('coi_bitacora', { 
+                        id: 0, 
+                        id_terminal: consulta.id,
+                        fh_registro: new Date(),                         
+                        desc_evento: 'El periodo de prueba demo ha finalizado.  El usuario debe contratar un plan para continuar utilizando la aplicación.',                   
+                        desc_error: 'fin_demo',
+                     });
+
                 return datareturn;  
              } 
 
