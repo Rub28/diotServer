@@ -1434,7 +1434,7 @@ async function validauso(tabla, consulta) {
                         desc_error: 'error en validauso', 
                         }); 
 
-                        
+
         throw error; // Lanzamos el error para que lo maneje el bloque llamante
 
 
@@ -1457,7 +1457,7 @@ function login(tabla, consulta) {
         })
     })
 }*/
-
+  
 async function login(tabla, consulta) {
     let conexion;
     try {
