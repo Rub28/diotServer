@@ -1272,7 +1272,7 @@ async function validauso(tabla, consulta) {
                         id: 0, 
                         id_terminal: consulta.id,
                         fh_registro: new Date(),                         
-                        desc_evento: 'El periodo de prueba demo ha finalizado.  El usuario debe contratar un plan para continuar utilizando la aplicación.',                   
+                        desc_evento: returnMensaje,                   
                         desc_error: 'fin_demo',
                      });
 
@@ -1287,6 +1287,14 @@ async function validauso(tabla, consulta) {
                         estatus: 'inactivo',  
                         mensaje: returnMensaje
                     };    
+
+                         agregar('coi_bitacora', { 
+                        id: 0, 
+                        id_terminal: consulta.id,
+                        fh_registro: new Date(),                         
+                        desc_evento: returnMensaje,  
+                        desc_error: 'fin_demo',
+                     });
 
                     return datareturn; 
                 }  
@@ -1316,7 +1324,21 @@ async function validauso(tabla, consulta) {
                                     estatus: 'inactivo',  
                                     mensaje: returnMensaje     
                                 };
-                                return datareturn;
+
+                                    agregar('coi_bitacora', { 
+                                            id: 0, 
+                                            id_terminal: consulta.id,
+                                            fh_registro: new Date(),                         
+                                            desc_evento: returnMensaje,                   
+                                            desc_error: 'basico',
+                                        });
+
+
+                                return datareturn; 
+
+                       
+
+                                
 
                         } 
                         } else { 
@@ -1342,7 +1364,16 @@ async function validauso(tabla, consulta) {
                                     datareturn = { 
                                         estatus: 'inactivo',  
                                         mensaje: returnMensaje
-                                    };
+                                    }; 
+
+                                    agregar('coi_bitacora', { 
+                                        id: 0, 
+                                        id_terminal: consulta.id,
+                                        fh_registro: new Date(),                         
+                                        desc_evento: returnMensaje,                   
+                                        desc_error: result[0].plan,
+                                        });
+
                                     return datareturn; 
                                 }
                         }  else {  
@@ -1394,7 +1425,18 @@ async function validauso(tabla, consulta) {
  
     } catch (error) {
         console.error("Error en el login:", error);
+
+       agregar('coi_bitacora', { 
+                        id: 0, 
+                        id_terminal: consulta.id,
+                        fh_registro: new Date(),                         
+                        desc_evento: error.message,                               
+                        desc_error: 'error en validauso', 
+                        }); 
+
+                        
         throw error; // Lanzamos el error para que lo maneje el bloque llamante
+
 
     } finally {
         // Liberar la conexión si se obtuvo
