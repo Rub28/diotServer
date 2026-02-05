@@ -1336,16 +1336,12 @@ async function validauso(tabla, consulta) {
                                   // Pasaron los 30  dias del plan basico,  reseteamos los valores.  
 
                                 await conexion.execute( 
-                                    `update  ${tabla} set fh_registro = ? ,  num_ejecucion = ?, estatus = 'inactivo'  renovacion = 'pendiente pago'  where id_terminal  =  ?  `,
+                                    `update  ${tabla} set fh_registro = ? ,  num_ejecucion = ?, estatus = 'inactivo', renovacion = 'pendiente pago'  where id_terminal  =  ?  `,
                                     [fecha, contador, consulta.id]
                                 ); 
                                 console.log(" Se actualiza --> " , tabla); 
 
-                                return datareturn; 
-
-                       
-
-                                
+                                return datareturn;                                 
 
                         } 
                         } else { 
@@ -1383,7 +1379,7 @@ async function validauso(tabla, consulta) {
 
                                         
                                     await conexion.execute( 
-                                        `update  ${tabla} set fh_registro = ? ,  num_ejecucion = ?, estatus = 'inactivo'  renovacion = 'pendiente pago'  where id_terminal  =  ?  `,
+                                        `update  ${tabla} set fh_registro = ? ,  num_ejecucion = ?, estatus = 'inactivo',  renovacion = 'pendiente pago'  where id_terminal  =  ?  `,
                                         [fecha, contador, consulta.id]
                                     ); 
                                     console.log(" Se actualiza --> " , tabla); 
