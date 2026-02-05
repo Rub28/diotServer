@@ -1293,7 +1293,7 @@ async function validauso(tabla, consulta) {
                         id_terminal: consulta.id,
                         fh_registro: new Date(),                         
                         desc_evento: returnMensaje,  
-                        desc_error: 'fin_demo',
+                        desc_error: result[0].estatus,
                      });
 
                     return datareturn; 
@@ -1332,7 +1332,12 @@ async function validauso(tabla, consulta) {
                                             desc_evento: returnMensaje,                   
                                             desc_error: 'basico',
                                         });
-
+                                
+                                  // Pasaron los 30  dias del plan basico,  reseteamos los valores.  
+                                await conexion.execute( 
+                                    `update  ${tabla} set fh_registro = ? ,  num_ejecucion = ?, estatus = 'inactivo'  renovacion = 'pendiente pago'  where id_terminal  =  ?  `,
+                                    [fecha, contador, consulta.id]
+                                ); 
 
                                 return datareturn; 
 
@@ -1411,7 +1416,7 @@ async function validauso(tabla, consulta) {
                     [consulta.id_terminal]
                 );
             */ 
-                console.log(" *  No existe regsitro de cliente *  "); 
+                console.log(" *  No existe registro de cliente *  "); 
 
                 datareturn = {
                     estatus: 'sin_registro',  
