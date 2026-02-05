@@ -1381,6 +1381,14 @@ async function validauso(tabla, consulta) {
                                         desc_error: result[0].plan,
                                         });
 
+                                        
+                                    await conexion.execute( 
+                                        `update  ${tabla} set fh_registro = ? ,  num_ejecucion = ?, estatus = 'inactivo'  renovacion = 'pendiente pago'  where id_terminal  =  ?  `,
+                                        [fecha, contador, consulta.id]
+                                    ); 
+                                    console.log(" Se actualiza --> " , tabla); 
+
+
                                     return datareturn; 
                                 }
                         }  else {  
