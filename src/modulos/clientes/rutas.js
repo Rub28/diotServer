@@ -6,6 +6,7 @@ const router = express.Router();
 router.get('/autocomplete', ClientesAutocomplete);
 router.post('/todosagente', todosAgente);
 router.post('/validauso', validauso);
+router.post('/obtieneExcepcionTipo', obtieneExcepcionTipo); 
 router.get('/', uno);
 router.get('/:id', uno);
 router.post('/', agregar);
@@ -94,5 +95,19 @@ async function validauso (req,res, next){
       next(error)
    }
 } 
+
+
+async function obtieneExcepcionTipo (req,res, next){
+   try {
+
+      console.log(" -->  Clientes funcion obtieneExcepcionTipo : ",req.body);    
+
+      const items = await controlador.obtieneExcepcionTipo(req.body)
+         respuestas.success(req, res, items, 200)
+   } catch (error) {
+      next(error)
+   }
+} 
+
 
 module.exports = router;

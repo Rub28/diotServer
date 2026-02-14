@@ -18,6 +18,11 @@ module.exports = function(dbinyectada) {
         return db.validauso(TABLA, body);
     }   
 
+    function obtieneExcepcionTipo(body){
+        return db.obtieneExcepcionTipo('coi_excep_tipo', body);
+    }   
+
+
     function uno(body){
         return db.uno(TABLA, body);
     }
@@ -46,6 +51,7 @@ module.exports = function(dbinyectada) {
         agregar,
         ClientesAutocomplete,
         validauso,
-        todosAgente
+        todosAgente,  
+        obtieneExcepcionTipo 
     }
 }

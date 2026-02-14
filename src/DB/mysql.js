@@ -81,6 +81,37 @@ async function todos(tabla, data) {
     }
 }
 
+
+
+async function obtieneExcepcionTipo(tabla, data) {
+    let conexion;
+    try {
+        // Obtener la conexión desde el pool
+        conexion = await conexiondb();
+        console.log(" data en obtieneExcepcionTipo: ", data)   
+        // Realizar la consulta usando async/await y execute
+        const [result] = await conexion.execute(
+            `SELECT * FROM ${tabla} WHERE estatus = ? AND id_cliente = ?`,
+            [data.estatus, data.id_cliente]  // Parámetro 'A' para el estatus activo
+        );
+
+        // Retornar los resultados de la consulta
+        console.log(" resultado en obtieneExcepcionTipo: ", result) 
+        return result;
+
+    } catch (error) {
+        console.error("Error en la consulta:", error);
+        throw error; // Lanzar el error para que lo maneje el bloque llamante
+
+    } finally {
+        // Liberar la conexión después de la consulta
+        if (conexion) {            
+            await conexion.close(); 
+            console.log("Conexión liberada.");
+        }
+    }
+}
+
 /* 
 function uno(tabla, id, estatus) {
     return new Promise((resolve, reject) => {
@@ -1262,7 +1293,7 @@ async function validauso(tabla, consulta) {
             if (diffDays > 7 && result[0].estatus === 'demo') {
                 // Actualizar el estatus si ha pasado más de 7 días { 
 
-                returnMensaje = `Su cuenta ha cumplido con el tiempo de prueba.  Por favor,  si esta interesado en contar con esta solución, lo invitamos a contratar alguno de nuestros planes. Para mayor informacion pongase en contacto mediante la cuenta de email; ruhernandez.dev@gmail.com  o visite nuestra pagina web rubai.com.mx `;
+                returnMensaje = `El período de prueba de su cuenta ha finalizado. Si desea seguir utilizando nuestra solución, lo invitamos a contratar alguno de nuestros planes. Para más información, contáctenos al correo ruhernandez.dev@gmail.com o visite nuestro sitio: rubai.com.mx.`;
                     let datareturn = { 
                         estatus: 'inactivo',  
                         mensaje: returnMensaje
@@ -1426,7 +1457,7 @@ async function validauso(tabla, consulta) {
 
                 datareturn = {
                     estatus: 'sin_registro',  
-                    mensaje: '   Solo necesita completar su registro básico. No es necesario registrar métodos de pago ni realizar ningún cargo en este momento. Posteriormente, nuestro equipo se pondrá en contacto personalmente para presentarle nuestros planes y servicios adaptados a sus necesidades. \n\n\
+                    mensaje: ' Complete su registro básico. Sin necesidad de métodos de pago ni cargos por ahora. Nuestro equipo se comunicará con usted para ofrecerle los planes y servicios ideales para sus necesidades \n\n\
                              Agradecemos su confianza.  '  
                             };  
                  return datareturn  || null;  
@@ -1874,5 +1905,6 @@ module.exports = {
     inventarioproducto, 
     todosAgenteProducto, 
     todosAlmacenes, 
-    actualizaProrrateo
+    actualizaProrrateo, 
+    obtieneExcepcionTipo
 }
