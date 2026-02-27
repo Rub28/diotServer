@@ -96,7 +96,8 @@ async function obtieneExcepcionTipo(tabla, data) {
         );
 
         // Retornar los resultados de la consulta
-        console.log(" resultado en obtieneExcepcionTipo: ", result) 
+       // console.log(" resultado en obtieneExcepcionTipo: ", result)  
+       
         return result;
 
     } catch (error) {
@@ -1218,18 +1219,18 @@ async function validaTerminal(tabla, consulta) {
         console.log("consulta", consulta)
         console.log(" Tabla validaTerminal ", tabla);  
 
-        const parametros = [consulta.num_serie_hd , consulta.direc_mac, consulta.id_so, consulta.id_cliente];
+        const parametros = [consulta.num_serie_hd , consulta.direc_mac, consulta.id_so ];
         console.log("parametros", parametros)
         // Ejecutar la consulta usando los parámetros en un array
         const [result] = await conexion.execute(
-            `SELECT id, num_serie_hd, direc_mac, id_so, id_cliente FROM ${tabla} where num_serie_hd= ? or direc_mac = ? or id_so = ? or id_cliente = ?`,
+            `SELECT id, num_serie_hd, direc_mac, id_so, id_cliente FROM ${tabla} where num_serie_hd= ? or direc_mac = ? or id_so = ? `,
             parametros // Pasar los parámetros como un array  
         );  
    
         // Retornar el primer resultado (suponiendo que solo hay uno) 
-        console.log(" Resultado validaTerminal ", result);   
+        console.log(" Resultado validaTerminal ", result[0]);   
 
-        return result || null; // Si no hay coincidencias, se devuelve null
+        return result[0] || null; // Si no hay coincidencias, se devuelve null
  
     } catch (error) {
         console.error("Error en el login:", error);
