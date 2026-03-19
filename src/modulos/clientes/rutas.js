@@ -6,7 +6,8 @@ const router = express.Router();
 router.get('/autocomplete', ClientesAutocomplete);
 router.post('/todosagente', todosAgente);
 router.post('/validauso', validauso);
-router.post('/obtieneExcepcionTipo', obtieneExcepcionTipo); 
+router.post('/obtieneExcepcionTipo', obtieneExcepcionTipo);  
+router.post('/obtieneConceptos', obtieneConceptos); 
 router.get('/', uno);
 router.get('/:id', uno);
 router.post('/', agregar);
@@ -103,6 +104,19 @@ async function obtieneExcepcionTipo (req,res, next){
       console.log(" -->  Clientes funcion obtieneExcepcionTipo : ",req.body);    
 
       const items = await controlador.obtieneExcepcionTipo(req.body)
+         respuestas.success(req, res, items, 200)
+   } catch (error) {
+      next(error)
+   }
+} 
+
+
+async function obtieneConceptos (req,res, next){
+   try {
+
+      console.log(" -->  Clientes funcion obtieneConceptos : ",req.body);    
+
+      const items = await controlador.obtieneConceptos(req.body)
          respuestas.success(req, res, items, 200)
    } catch (error) {
       next(error)

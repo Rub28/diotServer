@@ -19,9 +19,13 @@ module.exports = function(dbinyectada) {
     }   
 
     function obtieneExcepcionTipo(body){
-        return db.obtieneExcepcionTipo('coi_excep_tipo', body);
+        return db.obtieneValorCatalogo('coi_excep_tipo', body);
     }   
 
+    function obtieneConceptos(body){
+      //  return db.obtieneValorCatalogo('coi_concepto_tasa0_exento', body);
+           return db.obtieneValorCatalogo(body.tabla, body);
+    }
 
     function uno(body){
         return db.uno(TABLA, body);
@@ -52,6 +56,7 @@ module.exports = function(dbinyectada) {
         ClientesAutocomplete,
         validauso,
         todosAgente,  
-        obtieneExcepcionTipo 
+        obtieneExcepcionTipo,  
+        obtieneConceptos 
     }
 }

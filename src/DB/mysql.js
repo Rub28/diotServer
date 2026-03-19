@@ -83,12 +83,13 @@ async function todos(tabla, data) {
 
 
 
-async function obtieneExcepcionTipo(tabla, data) {
+async function obtieneValorCatalogo(tabla, data) {
     let conexion;
     try {
         // Obtener la conexión desde el pool
         conexion = await conexiondb();
-        console.log(" data en obtieneExcepcionTipo: ", data)   
+        console.log(" data en obtieneValorCatalogo: ", data);  
+        console.log("  tabla a consultar: ", tabla)
         // Realizar la consulta usando async/await y execute
         const [result] = await conexion.execute(
             `SELECT * FROM ${tabla} WHERE estatus = ? AND id_cliente = ?`,
@@ -96,7 +97,7 @@ async function obtieneExcepcionTipo(tabla, data) {
         );
 
         // Retornar los resultados de la consulta
-       // console.log(" resultado en obtieneExcepcionTipo: ", result)  
+        // console.log(" resultado en obtieneExcepcionTipo: ", result)  
        
         return result;
 
@@ -1907,5 +1908,5 @@ module.exports = {
     todosAgenteProducto, 
     todosAlmacenes, 
     actualizaProrrateo, 
-    obtieneExcepcionTipo
+    obtieneValorCatalogo
 }
