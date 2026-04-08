@@ -1292,10 +1292,10 @@ async function validauso(tabla, consulta) {
 
              let datareturn = {};
         
-            if (diffDays > 7 && result[0].estatus === 'demo') {
+            if (diffDays > 8 && result[0].estatus === 'demo') {
                 // Actualizar el estatus si ha pasado más de 7 días { 
 
-                returnMensaje = `El período de prueba de su cuenta ha finalizado. Si desea seguir utilizando nuestra solución, lo invitamos a contratar alguno de nuestros planes. Para más información, contáctenos al correo ruhernandez.dev@gmail.com o visite nuestro sitio: rubai.com.mx.`;
+                returnMensaje = `El período de prueba de su cuenta ha finalizado. Si desea seguir utilizando nuestra solución, lo invitamos a contratar alguno de nuestros planes. Para más información, contáctenos al correo ventas@rubai.com.mx o visite nuestro sitio: rubai.com.mx para mas información`; 
                     let datareturn = { 
                         estatus: 'inactivo',  
                         mensaje: returnMensaje
@@ -1314,7 +1314,7 @@ async function validauso(tabla, consulta) {
 
              if (result[0].estatus === 'inactivo' ) { 
                 // Actualizar el estatus si es diferente
-                    returnMensaje = `El estatus de su cuenta está Inactiva, por favor ponganse en contacto mediante la cuenta de email;  ruhernandez.dev@gmail.com, en breve nos pondremos en contacto con usted.  `; 
+                    returnMensaje = `El estatus de su cuenta está Inactiva, por favor ponganse en contacto mediante la cuenta de email;  activacion@rubai.com.mx, en breve nos pondremos en contacto con usted.  `; 
                     
                     datareturn = {
                         estatus: 'inactivo',  
@@ -1352,7 +1352,7 @@ async function validauso(tabla, consulta) {
 
                         if (diffDays < 30 )   {  
                             if (result[0].num_ejecucion > 8 ) {  
-                                returnMensaje = `Ha alcanzado el límite de generación de reportes de su plan para este mes. Si desea mejorar su plan, puede contactarnos al correo: ruhernandez.dev@gmail.com, con gusto le atenderemos.`;                                                    
+                                returnMensaje = `Ha alcanzado el límite de generación de reportes de su plan para este mes. Si desea mejorar su plan, puede contactarnos al correo: activacion@rubai.com.mx, con gusto le atenderemos.`;                                                    
                                 datareturn = { 
                                     estatus: 'inactivo',  
                                     mensaje: returnMensaje     
@@ -1396,7 +1396,7 @@ async function validauso(tabla, consulta) {
                             if ( diffDays < 30 )   { 
 
                                 if (result[0].num_ejecucion > 20 ) {  
-                                    returnMensaje = `Ha alcanzado el límite de generación de reportes de su plan para este mes. Si desea mejorar su plan, puede contactarnos al correo: ruhernandez.dev@gmail.com, con gusto le atenderemos.`;                                                    
+                                    returnMensaje = `Ha alcanzado el límite de generación de reportes de su plan para este mes. Si desea mejorar su plan, puede contactarnos al correo: activacion@rubai.com.mx, con gusto le atenderemos.`;                                                    
                                     datareturn = { 
                                         estatus: 'inactivo',  
                                         mensaje: returnMensaje
